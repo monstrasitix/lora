@@ -1,5 +1,8 @@
 version: '2'
 
+networks:
+  laravel:
+
 services:
   mariadb:
     image: 'docker.io/bitnami/mariadb:10.2-debian-10'
@@ -8,6 +11,21 @@ services:
       - MARIADB_USER=my_user
       - MARIADB_DATABASE=my_database
       - MARIADB_PASSWORD=my_password
+    networks:
+      - laravel
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    depends_on:
+      - mariadb
+    environment:
+      PMA_HOST: mariadb
+      MYSQL_ROOT_PASSWORD: secret
+    networks:
+      - laravel
 
   myapp:
     tty: true
@@ -23,4 +41,6 @@ services:
       - 3000:3000
     volumes:
       - ./:/app
+    networks:
+      - laravel
     # privileged: true # Privileged mode could be required to run this container under Windows
