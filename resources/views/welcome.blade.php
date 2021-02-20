@@ -9,6 +9,8 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
 
+        <link rel="stylesheet" href="/css/app.css" />
+
         <!-- Styles -->
         <style>
             html, body {
@@ -82,6 +84,10 @@
             <div class="content">
                 <div class="title m-b-md">
                     Laravel
+                </div>
+
+                <div>
+                    <button class="ui button">Button</button>
                 </div>
 
                 <div class="links">
